@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+    <bean id="sleepHelper" class="test.spring.aop.bean.SleepHelper"/>
+    <bean id="sleepAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="sleepHelper"/>
+        <property name="pattern" value=".*sleep"/>
+    </bean>
+    <bean id="human" class="test.spring.aop.bean.Human"/>
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+</beans>
